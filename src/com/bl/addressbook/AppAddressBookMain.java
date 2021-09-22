@@ -13,18 +13,32 @@ public class AppAddressBookMain {
         int ch = 0;
         while (ch == 0) {
             Scanner scanner = new Scanner(System.in);
-            System.out.print("1. = Add Contacts\n2. = Display Contact\n3. = Edit Contact\n4. = Exit\nEnter Your Choice: ");
+            System.out.print("1. = Add Contacts\n2. = Display Contact\n3. = Edit Contact\n4. = Delete\n5. = Exit\nEnter Your Choice: ");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1 -> appAddressBookMain.createContact();
-                case 2 -> appAddressBookMain.display();
-                case 3 -> appAddressBookMain.edit();
-                case 4 -> ch = 1;
-                default -> System.out.println("Plz Enter 1 or 2 or 3  only");
+                case 2 -> appAddressBookMain.read();
+                case 3 -> appAddressBookMain.update();
+                case 4 -> appAddressBookMain.delete();
+                case 5 -> ch = 1;
+                default -> System.out.println("Plz Enter 1 or 2 or 3 0r 4 only");
             }
         }
     }
-    private void edit() {
+
+    private void delete() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Name To Remove from Contact list: ");
+        String firstName = scanner.nextLine();
+        for (int i = 0; i < contactList.size(); i++) {
+            if (Objects.equals(firstName, contactList.get(i).getFirstName())) {
+                contactList.remove(contactList.get(i));
+                System.out.println("\nDeleted Successfully.....\n");
+            } else System.out.println("The name entered is incorrect.");
+        }
+    }
+
+    private void update() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Name To Edit from Contact list: ");
         String firstNam = scanner.nextLine();
@@ -60,7 +74,7 @@ public class AppAddressBookMain {
         }
     }
 
-    private void display() {
+    private void read() {
         System.out.println("*****************\n  CONTACT LIST\n***************** ");
         for (Contact b : contactList) {
             System.out.println(b.toString());
