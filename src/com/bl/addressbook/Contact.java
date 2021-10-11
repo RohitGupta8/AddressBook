@@ -24,7 +24,7 @@ class Contact {
 
     @Override
     public String toString() {
-        return "----------------------------------\n" +
+        return "\n----------------------------------\n" +
                 "FirstName  =  " + firstName +
                 "\nLastName   =  " + lastName +
                 "\nAddress    =  " + address +
